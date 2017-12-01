@@ -1,0 +1,48 @@
+<html>
+<html>
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="javascripts/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+</head>
+<body ng-app="purchases" ng-controller="MainCtrl" class="admin-page">
+
+<div class="container main-card">
+    <div class="card text-center">
+
+        <div class="card-header">
+            Store Management Interface
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-10 offset-1">
+                    <form ng-submit="addProduct()">
+                        <input type="text" ng-model="productName" class="form-control" placeholder="enter product name">
+                        <input type="text" ng-model="productPrice" class="form-control" placeholder="enter product price">
+                        <input type="text" ng-model="productPic" class="form-control" placeholder="URL of picture">
+                        <button type="submit">Add Product</button>
+                    </form>
+
+                    <h1>Current Products</h1>
+                    <div class="container-fluid">
+                        <div ng-repeat="product in products | orderBy: ['name','-price']" class="list-group-item">
+                            <span class="fa fa-times" ng-click="delete(product)"></span>
+                            {{product.name}} - Price: ${{product.price}} - Ordered: {{product.totalOrdered}}
+                            <img ng-src="{{product.pic}}" width="100px" height="100px">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

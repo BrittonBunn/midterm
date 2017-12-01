@@ -1,0 +1,56 @@
+<html>
+<html>
+<head>
+    <title>Customer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="javascripts/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+</head>
+<body ng-app="purchases" ng-controller="MainCtrl" class="customer-page">
+
+    <div class="container main-card">
+        <div class="card text-center">
+
+            <div class="card-header">
+                Shopping Interface
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-10 offset-1">
+
+                        <h1>Current Products</h1>
+
+                        <div class="container-fluid">
+                            <div ng-repeat="product in products | orderBy: ['name','-price']" class="list-group-item">
+                                <input type="checkbox" ng-model="product.isChecked">
+                                {{product.name}} - ${{product.price}}
+                                <img ng-src="{{product.pic}}" width="100px" height="100px">
+                            </div>
+                        </div>
+
+                        <form ng-submit="placeOrder()">
+                            <button type="submit">Submit Purchase</button>
+                        </form>
+
+                        <div ng-if="selectedProducts">
+                            <h1>Shopping Cart</h1>
+                        </div>
+
+                        <div class="container-fluid">
+                            <div ng-repeat="product in selectedProducts | orderBy: ['name','-price']" class="list-group-item">
+                                {{product.name}} - ${{product.price}}
+                                <img ng-src="{{product.pic}}" width="100px" height="100px">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
